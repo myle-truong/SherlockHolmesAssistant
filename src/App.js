@@ -8,6 +8,7 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import './App.css';
 
+//API's Clarifai.
 const app = new Clarifai.App({
   apiKey: 'df12c62bad204c19a29c2c8f2d6f9f15'
 });
@@ -18,7 +19,7 @@ const particlesOptions = {
       value: 150,
       density: {
         enable: true,
-        value_area: 800
+        value_area: 900
       }
     },
     color: {
@@ -29,7 +30,7 @@ const particlesOptions = {
       random: true,
       anim: {
         enable: true,
-        speed: 30
+        speed: 50
       }
     }
   }
@@ -54,8 +55,9 @@ class App extends Component {
     const image = document.getElementById('inputimg');
     const width = Number(image.width);
     const height = Number(image.height);
+    console.log(width, height);
 
-    //setup % of box which recognize of the findface
+    //findFace box (bouning box setup)
     return {
       leftCol: clarifaiFace.left_col * width,
       topRow: clarifaiFace.top_row * height,
@@ -65,7 +67,7 @@ class App extends Component {
   };
 
   displayFaceBox = box => {
-    console.log(box);
+    // console.log(box);
     this.setState({ box: box });
   };
 
